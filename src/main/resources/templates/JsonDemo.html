@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonDemo</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <span>自由</span>
+
+    <p>{{info}}</p>
+
+</div>
+<script type = "text/javascript">
+    new Vue({
+        el: '#app',
+        data : {
+            info: "未执行",
+            joke: '！',
+        },
+        mounted (){
+
+            let that = this;
+            axios.post('/JsonDemo', [{name: "世界奇妙物语"},{name:"化物语"},{name:"猫物语"}])
+                .then(function (res) {
+                    that.info = "qwq";
+                }, function (err) {
+                    that.info=err;
+                });
+            axios.post('/json', {name: "空白"})
+                .then(function (res) {
+                    that.info = "失乐园";
+                }, function (err) {
+                    that.info=err;
+                });
+
+        },
+        methods:{}
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>last</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <p>卡梅隆</p>
+    <input type="text" placeholder="姓名" v-model="username"><br>
+    <input type="text" placeholder="id" v-model="id"><br>
+    <button value="提交" @click="getuser">提交</button><br>
+    <p>{{info}}</p>
+    <p>{{joke}}</p>
+    <p>{{username}}</p>
+    <p>{{id}}</p>
+
+</div>
+<script type = "text/javascript">
+    new Vue({
+        el: '#app',
+        data : {
+            info: "未执行",
+            joke: '！',
+            username: "",
+            id: ""
+        },
+
+        mounted (){
+            let that = this;
+            axios.post('/last', {name: "亚瑟王"})
+                .then(function (res) {
+                    that.info = res.data.address;
+                }, function (err) {
+                    that.info=err;
+                });
+        },
+
+        methods:{
+            getuser: function() {
+                let that = this;
+                axios.post('/last',{username:that.username,id:that.id})
+                    .then(function(response) {
+                        that.joke = response.data;
+                    }, function(err) {
+                        that.joke = err;
+                    })
+            },
+        }
+
+    })
+</script>
+</body>
+</html>

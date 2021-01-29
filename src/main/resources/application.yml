@@ -1,0 +1,29 @@
+
+server:
+  #项目端口
+  port: 8080
+  servlet:
+    #    项目路径
+    context-path: /
+
+
+# 连接数据库的信息
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT
+    username: root
+    password: 123456
+    # 视图的前缀和后缀
+# mybatis配置
+mybatis:
+  mapper-locations: classpath*:happy/go/mapper/*.xml
+  type-aliases-package: com/happy/go/entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 查看sql语句
+logging:
+  level:
+    com.kon.teatime.mapper: DEBUG
+
