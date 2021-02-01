@@ -6,9 +6,10 @@ import com.happy.go.entity.User;
 import com.happy.go.mapper.UserMapper;
 import com.happy.go.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private UserMapper mapper;
 
     @Override
+    @ApiImplicitParam("根据条件查询")
     public User getUser(User user) {
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(User::getId, user.getId());
@@ -33,7 +35,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return user;
     }
 
+
     @Override
+    @ApiImplicitParam("分页查询")
     public PageInfo<User> queryUserList(User user) {
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(User::getSex, user.getSex());
