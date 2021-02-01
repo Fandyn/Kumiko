@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>last</title>
+    <title>select</title>
     <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
     <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 </head>
@@ -12,11 +12,17 @@
     <p>卡梅隆</p>
     <input type="text" placeholder="姓名" v-model="username"><br>
     <input type="text" placeholder="id" v-model="id"><br>
+    <input type="text" placeholder="性别" v-model="sex"><br>
     <button value="提交" @click="getuser">提交</button><br>
+    <button value="提交" @click="getqueryuser">条件查询</button><br>
+    <li v-for="item in joke">
+        <p>{{item}}</p>
+    </li>
     <p>{{info}}</p>
     <p>{{joke}}</p>
     <p>{{username}}</p>
     <p>{{id}}</p>
+    <p>{{sex}}</p>
 
 </div>
 <script type = "text/javascript">
@@ -26,26 +32,26 @@
             info: "未执行",
             joke: '！',
             username: "",
-            id: ""
-        },
-
-        mounted (){
-            let that = this;
-            axios.post('/last', {name: "亚瑟王"})
-                .then(function (res) {
-                    that.info = res.data.address;
-                }, function (err) {
-                    that.info=err;
-                });
+            id: "",
+            sex:"",
         },
 
         methods:{
 
             getuser: function() {
                 let that = this;
-                axios.post('/last',{username:that.username,id:that.id})
+                axios.post('/select/getUser',{username:that.username,id:that.id})
                     .then(function(response) {
-                        that.joke = response.data;
+                        that.info = response.data;
+                    }, function(err) {
+                        that.info = err;
+                    })
+            },
+            getqueryuser: function() {
+                let that = this;
+                axios.post('/select/queryUserList',{sex:that.sex})
+                    .then(function(response) {
+                        that.joke = response.data.list;
                     }, function(err) {
                         that.joke = err;
                     })

@@ -3,7 +3,6 @@ package com.happy.go.controller;
 
 import com.happy.go.entity.UserS;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -33,9 +32,10 @@ public class UserController {
         return user;
     }
 
-    @GetMapping
+
 //    @ResponseBody         //同时存在多个ResponseBody时会返回最后一个方法的ResponseBody，方法为get时一般为json格式的数据网页
                         //无response时get方式无法准确获取响应参数，同上面矛盾，故使用post方法
+    @GetMapping
     public UserS getuser(UserS user) {
         System.out.println("种田梨沙-.-");
         System.out.println(user.getId());
