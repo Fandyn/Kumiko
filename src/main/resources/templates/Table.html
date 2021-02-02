@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" href="css/table.css">
+<!--    真正的标签：高速，正规，版本新兼容性强加载还快-->
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+<!--    &ndash;&gt;虚假标签：垃圾，加载慢，版本低，易出错-->
+<!--&lt;!&ndash;    <script src="//unpkg.com/vue/dist/vue.js"></script>-->
+    <script src="//unpkg.com/element-ui@2.15.0/lib/index.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" placeholder="usernames" v-model="usernames"><br>
+    <button value="提交" @click="getPost">提交</button><br>
+    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+        <el-form-item label="审批人">
+            <el-input v-model="formInline.user" placeholder="审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="活动区域">
+            <el-select v-model="formInline.region" placeholder="活动区域">
+                <el-option label="区域一" value="shanghai"></el-option>
+                <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+        </el-form-item>
+        <el-form-item>
+            <el-button type="primary" @click="onSubmit">查询</el-button>
+        </el-form-item>
+    </el-form>
+    <p>
+        {{id}}
+        {{info}}
+        {{joke}}
+        {{usernames}}
+        {{formInline.user}}
+    </p>
+    <template>
+        <el-table
+                :data="tableData"
+                style="width: 100%"
+                :row-class-name="tableRowClassName">
+            <el-table-column
+                    prop="date"
+                    label="日期"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="name"
+                    label="姓名"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="address"
+                    label="地址">
+            </el-table-column>
+        </el-table>
+    </template>
+
+    <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="1000">
+    </el-pagination>
+
+</div>
+<!--<script src="js/table.js"></script>-->
+<script>
+    var Main = {
+        methods: {
+            tableRowClassName({row, rowIndex}) {
+                if (rowIndex === 1) {
+                    return 'warning-row';
+                } else if (rowIndex === 3) {
+                    return 'success-row';
+                }
+                return '';
+            },
+            onSubmit() {
+                console.log('submit!');
+            },
+            getPost: function () {
+                let that = this;
+                let name=this.usernames;
+                axios.post('https://autumnfish.cn/api/user/reg', {username: that.usernames})
+                    .then(function (res) {
+                        that.joke = res.data;
+                        if (res.data == "注册成功") {
+                            that.joke="没想到吧jojo，这就是我的逃跑路线!!!!!!!!!!!!!!!!!";
+                        }
+                        if (res.data=="已被注册，请检查") {
+                            that.joke="这里已经满员了!!!!!!!!!!!!!!!!!";
+                        }
+                    }, function (err) {
+                        that.joke=err;
+                    });
+            },
+        },
+
+        data() {
+            return {
+                id:'10031',
+                info:'this is test',
+                joke:"hello",
+                usernames:"",
+                formInline: {
+                    user: '',
+                    region: ''
+                },
+                tableData: [{
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }]
+            }
+        }
+    }
+    var Ctor = Vue.extend(Main)
+    // $mount手动挂载
+    new Ctor().$mount('#app')
+
+</script>
+</body>
+
+</html>

@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-@RequestMapping("/select")
+@RequestMapping("/table")
 @Api("查询接口测试控制类")
-public class selectController {
+public class tableController {
 
     @Autowired
     private IUserService iUserService;

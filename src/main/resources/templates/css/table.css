@@ -1,0 +1,8 @@
+@import url("//unpkg.com/element-ui@2.15.0/lib/theme-chalk/index.css");
+.el-table .warning-row {
+    background: oldlace;
+}
+
+.el-table .success-row {
+    background: #f0f9eb;
+}
