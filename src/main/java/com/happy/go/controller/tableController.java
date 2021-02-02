@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/table")
 @Api("查询接口测试控制类")
+//模板设置可以不带后缀直接访问templates里面的html文件，但是无法访问该文件夹里面对应的css和js文件
+//所以必须放入static里面，连带html一起放入，此时需要带后缀进行访问
 public class tableController {
 
     @Autowired
