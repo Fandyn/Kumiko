@@ -32,7 +32,7 @@ public class UserController {
         return user;
     }
 
-
+//局限在于两个类使用的是同一个url，所以才会出错
 //    @ResponseBody         //同时存在多个ResponseBody时会返回最后一个方法的ResponseBody，方法为get时一般为json格式的数据网页
                         //无response时get方式无法准确获取响应参数，同上面矛盾，故使用post方法
     @GetMapping

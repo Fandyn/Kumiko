@@ -23,7 +23,7 @@
         mounted (){
 
             let that = this;
-            axios.post('/JsonDemo', [{name: "世界奇妙物语"},{name:"化物语"},{name:"猫物语"}])
+            axios.post('/jsonDemo', [{name: "世界奇妙物语"},{name:"化物语"},{name:"猫物语"}])
                 .then(function (res) {
                     that.info = "qwq";
                 }, function (err) {

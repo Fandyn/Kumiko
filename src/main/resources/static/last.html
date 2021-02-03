@@ -31,7 +31,7 @@
 
         mounted (){
             let that = this;
-            axios.post('/last', {name: "亚瑟王"})
+            axios.post('/last/demo', {name: "亚瑟王"})
                 .then(function (res) {
                     that.info = res.data.address;
                 }, function (err) {
@@ -40,17 +40,15 @@
         },
 
         methods:{
-
             getuser: function() {
                 let that = this;
-                axios.post('/last',{username:that.username,id:that.id})
+                axios.post('/last/demo',{username:that.username,id:that.id})
                     .then(function(response) {
                         that.joke = response.data;
                     }, function(err) {
                         that.joke = err;
                     })
             },
-
         }
 
     })

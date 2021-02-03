@@ -2,16 +2,14 @@ package com.happy.go.controller;
 
 
 import com.happy.go.entity.User;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-@Controller
+@RestController
 @RequestMapping("/last")
 public class LastController {
 
-    @PostMapping
-    @ResponseBody
+    @PostMapping("/demo")
     public User lastdemo(@RequestBody User user) {
         System.out.println(user.getUsername());
         user.setAddress("远离尘世的理想之乡");

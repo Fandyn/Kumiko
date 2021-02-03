@@ -13,12 +13,12 @@ import java.util.List;
 @Controller
 public class JsonDemoController {
 
-    @RequestMapping("/JsonDemo")
+    @RequestMapping("/jsonDemo")
     public String jsonD(Model user) {
-        return "JsonDemo";
+        return "jsonDemo";
     }
 
-    @PostMapping("/JsonDemo")
+    @PostMapping("/jsonDemo")
     public List<UserS> getJsonVal(@RequestBody List<UserS> user) throws IOException {
         for(UserS user2 : user){
             System.out.println("user2 = " + user2);
