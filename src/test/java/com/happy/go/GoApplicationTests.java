@@ -15,6 +15,7 @@ class GoApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println(1%2);
     }
 
 }
