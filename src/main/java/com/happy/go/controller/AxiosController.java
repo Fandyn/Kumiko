@@ -20,9 +20,36 @@ public class AxiosController {
     private IUserService iUserService;
 
 
+    @PostMapping("/updateUser")
+    @ApiOperation("修改用户")
+    public void update(@RequestBody User user) {
+        //修改测试
+        System.out.println("update");
+        System.out.println("id:" + user.getId() + "---name:" + user.getUsername() + "--sex:" + user.getSex() + "--address:" + user.getAddress() + "--birthday:" + user.getBirthday());
+        System.out.println(iUserService.updateUser(user));
+    }
+    @PostMapping("/addUser")
+    @ApiOperation("添加用户")
+    public void add(@RequestBody User user) {
+        //修改测试
+        System.out.println("add");
+        System.out.println("id:"+user.getId()+"---name:"+user.getUsername()+"--sex:"+user.getSex()+"--address:"+user.getAddress()+"--birthday:"+user.getBirthday());
+        System.out.println(iUserService.addUser(user));
+    }
+
+    @PostMapping("/delUser")
+    @ApiOperation("修改用户")
+    public void del(@RequestBody User user) {
+        //修改测试
+        System.out.println("del");
+        System.out.println("id:" + user.getId() + "---name:" + user.getUsername() + "--sex:" + user.getSex() + "--address:" + user.getAddress() + "--birthday:" + user.getBirthday());
+        System.out.println(iUserService.delUser(user));
+    }
+
+
     @PostMapping("/queryUserList")
     @ApiOperation("性别查询")
-    //如雷
+    //如雷,
     public PageInfo<User> query(@RequestBody User user) {
         System.out.println("学会："+user.getUsername());
         user.setAddress("远离尘世的理想之乡");

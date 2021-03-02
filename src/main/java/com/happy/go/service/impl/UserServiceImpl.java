@@ -1,6 +1,7 @@
 package com.happy.go.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.github.pagehelper.PageInfo;
 import com.happy.go.converter.UserConverter;
 import com.happy.go.entity.User;
@@ -9,14 +10,15 @@ import com.happy.go.mapper.UserMapper;
 import com.happy.go.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.swagger.annotations.ApiImplicitParam;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /**
  * <p>
  *  服务实现类
+ *  天上如是，地上依然
  * </p>
  *
  * @author fandz
@@ -30,6 +32,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Autowired
     private UserConverter converter;
+
+    @Override
+    @ApiImplicitParam("添加")
+    public int addUser(User user) {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        return mapper.insert(user);
+    }
+
+    @Override
+    @ApiImplicitParam("删除")
+    public int delUser(User user) {
+        return mapper.deleteById(user.getId());
+    }
+
+    @Override
+    @ApiImplicitParam("修改")
+    public int updateUser(User user) {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getId, user.getId());
+//        wrapper.eq(User::getUsername, user.getUsername());
+        return mapper.update(user, wrapper);
+    }
+
 
     @Override
     @ApiImplicitParam("根据条件查询")

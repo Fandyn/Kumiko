@@ -18,6 +18,16 @@ import io.swagger.annotations.ApiOperation;
 @Api("User表方法接口")
 public interface IUserService extends IService<User> {
 
+
+    @ApiOperation("添加用户")
+    int addUser(User user);
+
+    @ApiOperation("删除用户")
+    int delUser(User user);
+
+    @ApiOperation("修改用户")
+    int updateUser(User user);
+
     @ApiOperation("根据条件查询")
     User getUser(User user);
 
