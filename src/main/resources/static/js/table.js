@@ -52,6 +52,7 @@ var Main = {
                         done();
                         // 动画关闭需要一定的时间
                         setTimeout(() => {
+                            //真物
                             this.loading = false;
                         }, 400);
                         console.log("可乐"+"--"+this.form.name+"--"+this.form.sex+"--"+this.form.address+"--"+this.form.date);//动画过后执行
@@ -77,6 +78,7 @@ var Main = {
                             this.loading = false;
                         }, 400);
                         console.log("可乐"+"--"+this.form.name+"--"+this.form.sex+"--"+this.form.address+"--"+this.form.date);//动画过后执行
+                        //必须
                         this.dialog = false;
                     }, 2000);
                 })
