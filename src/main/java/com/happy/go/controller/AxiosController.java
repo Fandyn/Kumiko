@@ -85,7 +85,13 @@ public class AxiosController {
         return pageInfo;
     }
 
+    @PostMapping("/del")
+    public void delFun(@RequestBody UserQuery userQuery) {
+
+    }
     @GetMapping
-    public void naugxt() {}
+    public void naugxt() {
+
+    }
 
 }
