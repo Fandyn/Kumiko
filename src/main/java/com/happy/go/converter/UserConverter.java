@@ -5,6 +5,7 @@ import com.happy.go.entity.VO.UserQuery;
 import org.mapstruct.Mapper;
 import java.util.List;
 
+//阴间玩意，未知原因，本类不发生变化时，无法编译完全
 @Mapper(componentModel = "spring")
 public interface UserConverter {
 
@@ -14,5 +15,5 @@ public interface UserConverter {
 
     List<UserQuery> userlist2querylist(List<User> users);
 
-//    Error:(16, 21) java: Can't map Collection element "com.happy.go.entity.User user" to "com.happy.go.entity.VO.UserQuery userQuery". Consider to declare/implement a mapping method: "com.happy.go.entity.VO.UserQuery map(com.happy.go.entity.User value)".
+
 }
