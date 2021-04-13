@@ -53,13 +53,12 @@ public class AxiosController {
     public PageInfo<User> query(@RequestBody User user) {
         System.out.println("学会："+user.getUsername());
         user.setAddress("远离尘世的理想之乡");
-        PageInfo<User> pageInfo = iUserService.queryUserList(user);
-//        for (
+////        for (
 //                User m : pageInfo.getList()
 //        ) {
 ////            System.out.println(m);
 //        }
-        return pageInfo;
+        return iUserService.queryUserList(user);
     }
 
     @PostMapping("/queryUserListByterm")
@@ -71,8 +70,7 @@ public class AxiosController {
             // 第几页
             pageNum: 1,
         * */
-        PageInfo<User> pageInfo = iUserService.queryUserListByterm(user);
-        return pageInfo;
+        return iUserService.queryUserListByterm(user);
     }
 
     @PostMapping("/queryinfo")
@@ -81,8 +79,7 @@ public class AxiosController {
         System.out.println("加刻："+page.getPageNum());
         System.out.println("大小：" + page.getPageSize());
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
-        PageInfo<UserQuery> pageInfo = iUserService.pageInfo(page);
-        return pageInfo;
+        return iUserService.pageInfo(page);
     }
 
     @PostMapping("/del")

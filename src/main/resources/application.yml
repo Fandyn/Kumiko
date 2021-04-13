@@ -25,5 +25,5 @@ mybatis:
 # 查看sql语句
 logging:
   level:
-    com.kon.teatime.mapper: DEBUG
+    com.happy.go.mapper: DEBUG
 
